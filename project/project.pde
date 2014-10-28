@@ -40,6 +40,18 @@ void setup() {
 
 void mousePressed()
 {
+  c1.pause();
+  f1.pause();
+  f2.pause();
+  r1.pause();
+  r2.pause();
+  h1.pause();
+  h2.pause();
+  t1.pause();
+  t2.pause();
+  sf1.pause();
+  sf2.pause();
+  
   //audio
   if (mouseY > 400){ //Comedy/romance/reflective/fiction
     int x = int(random(5));
@@ -51,7 +63,7 @@ void mousePressed()
        r1.play();
        r1.rewind();
       }
-      if (x == 3){
+      else if (x == 3){
        f1.play();
        f1.rewind();
       }
@@ -130,10 +142,10 @@ class Obj{
     this.xoffset = random(width);
     this.yoffset = y;
     if (this.y > 400){
-      this.clr = color(int(random(100)),int(random(100)),int(random(200))+56);
+      this.clr = color(int(random(100)),int(random(100)),int(random(150))+156);
     }
     else {
-      this.clr = color(int(random(200))+56,int(random(100)),int(random(100)));
+      this.clr = color(int(random(150))+156,int(random(100)),int(random(100)));
     }
   }
 }
