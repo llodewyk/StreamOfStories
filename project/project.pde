@@ -4,13 +4,14 @@ Minim minim;
 AudioPlayer c1, h1, h2, t1, t2, r1, r2, sf1, sf2, f1, f2, re1, re2, re3, m1;
 PImage img;
 
-
 void setup() {
   size(800, 800);
   smooth();
   background(0, 0, 0);
   streams = new StoryStream [60];
   streams[0] = new StoryStream();
+  last_second = second();
+  array_counter = 0;
   noStroke();
   img = loadImage("cup.png");
   minim = new Minim(this);
@@ -125,9 +126,14 @@ void draw() {
   fill(50,50,50,5);
   rect(0,0,width,height);
   
-  streams[(millis()/1000)%60] = new StoryStream();
+  int this_second = second();
+  if(this_second != last_second) {
+    streams[array_counter] = new StoryStream();
+    last_second = this_second;
+    array_counter = (array_counter+1) % streams.length;
+  }
   
-  for(int i=0; i<min(streams.length, millis()/1000); i++) {
+  for(int i=0; i<min(streams.length, array_counter); i++) {
     streams[i].x++;
     streams[i].y = streams[i].yoffset + sin(((streams[i].x + streams[i].xoffset) % width)/width * TWO_PI) * 20;
     fill(streams[i].clr);
