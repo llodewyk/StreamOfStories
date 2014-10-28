@@ -6,7 +6,6 @@ PImage img;
 // stuff for ripples
 final int N = 200; // number of mass
 float[][] p = new float[N][N];
-float[][] np = new float[N][N]; // temporary value of p
 float[][] dp = new float[N][N]; // variation of p
   
 
@@ -130,7 +129,7 @@ class Obj{
     this.y = random(height);
     this.xoffset = random(width);
     this.yoffset = y;
-    if (this.y > 300){
+    if (this.y > 400){
       this.clr = color(int(random(100)),int(random(100)),int(random(200))+56);
     }
     else {
