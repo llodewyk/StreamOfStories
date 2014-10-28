@@ -109,13 +109,8 @@ void draw() {
   
   cursor(img,0,0);
   
-  
-  for(int i=0;i<N;i++){
-    for(int j=0;j<N;j++){
-       fill(50,50,50,5);
-      rect(i*4, j*4,4,4);
-    }
-  }
+  fill(50,50,50,5);
+  rect(0,0,width,height);
   
   streams[(millis()/1000)%60] = new Obj();
   
