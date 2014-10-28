@@ -8,6 +8,8 @@ final int N = 200; // number of mass
 float[][] p = new float[N][N];
 float[][] np = new float[N][N]; // temporary value of p
 float[][] dp = new float[N][N]; // variation of p
+int last_second;
+int array_counter;
   
 
 void setup() {
@@ -16,6 +18,8 @@ void setup() {
   background(0, 0, 0);
   streams = new StoryStream [60];
   streams[0] = new StoryStream();
+  last_second = second();
+  array_counter = 0;
   noStroke();
   img = loadImage("cup.png");
   minim = new Minim(this);
@@ -114,9 +118,14 @@ void draw() {
   fill(50,50,50,5);
   rect(0,0,width,height);
   
-  streams[(millis()/1000)%60] = new StoryStream();
+  int this_second = second();
+  if(this_second != last_second) {
+    streams[array_counter] = new StoryStream();
+    last_second = this_second;
+    array_counter = (array_counter+1) % streams.length;
+  }
   
-  for(int i=0; i<min(streams.length, millis()/1000); i++) {
+  for(int i=0; i<min(streams.length, array_counter); i++) {
     streams[i].x++;
     streams[i].y = streams[i].yoffset + sin(((streams[i].x + streams[i].xoffset) % width)/width * TWO_PI) * 20;
     fill(streams[i].clr);
