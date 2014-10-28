@@ -4,16 +4,11 @@ Minim minim;
 AudioPlayer c1, h1, h2, t1, t2, r1, r2, sf1, sf2, f1, f2;
 PImage img;
 // stuff for ripples
-final int fRate = 20; // framerate
 final int N = 200; // number of mass
-float T = 0.6; // tense
-float rho = 0.03; // density of string
-float d = 0.8; // distance of mass
 float[][] p = new float[N][N];
 float[][] np = new float[N][N]; // temporary value of p
 float[][] dp = new float[N][N]; // variation of p
   
-float dt = 1.0/fRate;
 
 void setup() {
   size(800, 800);
@@ -46,10 +41,6 @@ void setup() {
 
 void mousePressed()
 {
-  //ripples
-    int n = round((mouseX)/4);
-    int m = round((mouseY)/4);
-    dp[n][m] = -1.0f;
   //audio
   if (mouseY > 400){ //Comedy/romance/reflective/fiction
     int x = int(random(5));
@@ -107,15 +98,10 @@ void draw() {
   
   cursor(img,0,0);
   
-  calc();
-  //background(0);
-  
-  float col = 0f;
   
   for(int i=0;i<N;i++){
     for(int j=0;j<N;j++){
-      col = p[i][j]*100+200;
-       fill(0,0,255-col,5);
+       fill(50,50,50,5);
       rect(i*4, j*4,4,4);
     }
   }
@@ -153,28 +139,4 @@ class Obj{
   }
 }
 
-// calculation of gravity
-void calc(){
-  float _dm = 1.0/(rho*d*d);
-  
-  for(int i=1;i<N-1;i++){
-    for(int j=1;j<N-1;j++){
-      // wave equation
-      dp[i][j] = dp[i][j] + (T/(d*d)*(p[i+1][j] + p[i][j+1] -4*p[i][j] + p[i-1][j] + p[i][j-1]))*_dm*dt*dt;
-  
-      np[i][j] = p[i][j] + dp[i][j];
-  
-      // boundary condition
-      p[0][j] = 0.0;
-      p[N-1][j] = 0.0;
-      p[i][0] = 0.0;
-      p[i][N-1] = 0.0;
-    }
-  }
-  
-  for(int i=0;i<N;i++){
-    for(int j=0;j<N;j++){
-      p[i][j] = np[i][j];
-    }
-  }
-}
+
