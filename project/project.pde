@@ -1,4 +1,4 @@
-Obj [] streams;
+StoryStream [] streams;
 import ddf.minim.*;
 Minim minim;
 AudioPlayer c1, h1, h2, t1, t2, r1, r2, sf1, sf2, f1, f2;
@@ -6,6 +6,7 @@ PImage img;
 // stuff for ripples
 final int N = 200; // number of mass
 float[][] p = new float[N][N];
+float[][] np = new float[N][N]; // temporary value of p
 float[][] dp = new float[N][N]; // variation of p
   
 
@@ -13,7 +14,8 @@ void setup() {
   size(800, 800);
   smooth();
   background(0, 0, 0);
-  streams = new Obj [60];
+  streams = new StoryStream [60];
+  streams[0] = new StoryStream();
   noStroke();
   img = loadImage("cup.png");
   minim = new Minim(this);
@@ -100,7 +102,7 @@ void draw() {
   fill(50,50,50,5);
   rect(0,0,width,height);
   
-  streams[(millis()/1000)%60] = new Obj();
+  streams[(millis()/1000)%60] = new StoryStream();
   
   for(int i=0; i<min(streams.length, millis()/1000); i++) {
     streams[i].x++;
@@ -113,24 +115,5 @@ void draw() {
 //boolean colliding(Obj a, Obj b) {
   //return (abs(a.x-b.x) < max(a.r, b.r)) && (abs(a.y-b.y) < max(a.r, b.r));
 //}
-
-class Obj{
-  color clr;
-  int current_inc;
-  float x, y, xoffset, yoffset;
-  
-  Obj() {
-    this.x = 0;
-    this.y = random(height);
-    this.xoffset = random(width);
-    this.yoffset = y;
-    if (this.y > 400){
-      this.clr = color(int(random(100)),int(random(100)),int(random(200))+56);
-    }
-    else {
-      this.clr = color(int(random(200))+56,int(random(100)),int(random(100)));
-    }
-  }
-}
 
 
