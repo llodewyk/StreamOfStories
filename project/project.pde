@@ -1,14 +1,9 @@
 StoryStream [] streams;
 import ddf.minim.*;
 Minim minim;
-AudioPlayer c1, h1, h2, t1, t2, r1, r2, sf1, sf2, f1, f2;
+AudioPlayer c1, h1, h2, t1, t2, r1, r2, sf1, sf2, f1, f2, re1, re2, re3, m1;
 PImage img;
-// stuff for ripples
-final int N = 200; // number of mass
-float[][] p = new float[N][N];
-float[][] np = new float[N][N]; // temporary value of p
-float[][] dp = new float[N][N]; // variation of p
-  
+
 
 void setup() {
   size(800, 800);
@@ -28,16 +23,12 @@ void setup() {
   r2 = minim.loadFile("r2.wav") ;
   sf1 = minim.loadFile("sf1.wav") ;
   sf2 = minim.loadFile("sf2.wav") ;
-  f1 = minim.loadFile("r1.wav") ;
-  f2 = minim.loadFile("r2.wav") ;
-  
-  //initial ripple condition
-  for(int i=0;i<N;i++){
-    for(int j=0;j<N;j++){
-      p[i][j] = 0.0;
-      dp[i][j] = 0.0;
-    }
-  }
+  f1 = minim.loadFile("f1.wav") ;
+  f2 = minim.loadFile("f2.wav") ;
+  re1 = minim.loadFile("re1.wav") ;
+  re2 = minim.loadFile("re2.wav") ;
+  re3 = minim.loadFile("re3.wav") ;
+  m1 = minim.loadFile("m1.wav") ;
 }
 
 void mousePressed()
@@ -53,10 +44,14 @@ void mousePressed()
   t2.pause();
   sf1.pause();
   sf2.pause();
+  re1.pause();
+  re2.pause();
+  re3.pause(); 
+  m1.pause();
   
   //audio
   if (mouseY > 400){ //Comedy/romance/reflective/fiction
-    int x = int(random(5));
+    int x = int(random(8));
       if (x == 1){
        c1.play();
        c1.rewind();
@@ -73,13 +68,25 @@ void mousePressed()
        f2.play();
        f2.rewind();
       }
+      else if (x == 5){
+       re1.play();
+       re1.rewind();
+      }
+      else if (x == 6){
+       re2.play();
+       re2.rewind();
+      }
+      else if (x == 7){
+       re3.play();
+       re3.rewind();
+      }
       else{
        r2.play();
        r2.rewind();
       }
   }
-  else{ //Horror/SciFi/Thriller
-    int x = int(random(6));
+  else{ //Horror/SciFi/Thriller/mysetery
+    int x = int(random(7));
       if (x == 1){
        h1.play();
        h1.rewind();
@@ -99,6 +106,10 @@ void mousePressed()
       else if (x == 5){ 
         sf2.play();
         sf2.rewind();
+      }
+      else if (x == 6){ 
+        m1.play();
+        m1.rewind();
       }
       else{
        t2.play();
@@ -128,7 +139,7 @@ void draw() {
   //return (abs(a.x-b.x) < max(a.r, b.r)) && (abs(a.y-b.y) < max(a.r, b.r));
 //}
 
-<<<<<<< HEAD
+
 class Obj{
   color clr;
   int current_inc;
@@ -148,6 +159,4 @@ class Obj{
   }
 }
 
-=======
->>>>>>> 7d56b93c4ea508186fa38c721d8819ffde3705e1
 
