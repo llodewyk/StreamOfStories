@@ -1,7 +1,7 @@
 StoryStream [] streams;
 import ddf.minim.*;
 Minim minim;
-AudioPlayer c1, h1, h2, t1, t2, r1, r2, sf1, sf2, f1, f2, re1, re2, re3, m1;
+AudioPlayer c1, h1, h2, t1, t2, r1, r2, sf1, sf2, f1, f2, re1, re2, re3, m1, p1, l1, l2;
 PImage img;
 int last_second;
 int array_counter;
@@ -32,6 +32,9 @@ void setup() {
   re2 = minim.loadFile("re2.wav") ;
   re3 = minim.loadFile("re3.wav") ;
   m1 = minim.loadFile("m1.wav") ;
+  p1 = minim.loadFile("p1.wav");
+  l1 = minim.loadFile("l1.wav") ;
+  l2 = minim.loadFile("l2.wav") ;
 }
 
 void mousePressed()
@@ -51,10 +54,13 @@ void mousePressed()
   re2.pause();
   re3.pause(); 
   m1.pause();
+  p1.pause();
+  l1.pause();
+  l2.pause();
   
   //audio
   if (mouseY > 400){ //Comedy/romance/reflective/fiction
-    int x = int(random(8));
+    int x = int(random(9));
       if (x == 1){
        c1.play();
        c1.rewind();
@@ -83,13 +89,17 @@ void mousePressed()
        re3.play();
        re3.rewind();
       }
+      else if (x == 8){
+       p1.play();
+       p1.rewind();
+      }
       else{
        r2.play();
        r2.rewind();
       }
   }
   else{ //Horror/SciFi/Thriller/mysetery
-    int x = int(random(7));
+    int x = int(random(9));
       if (x == 1){
        h1.play();
        h1.rewind();
@@ -113,6 +123,14 @@ void mousePressed()
       else if (x == 6){ 
         m1.play();
         m1.rewind();
+      }
+      else if (x == 7){ 
+        l1.play();
+        l2.rewind();
+      }
+      else if (x == 8){ 
+        l2.play();
+        l2.rewind();
       }
       else{
        t2.play();
@@ -159,10 +177,10 @@ class Obj{
     this.xoffset = random(width);
     this.yoffset = y;
     if (this.y > 400){
-      this.clr = color(int(random(100)),int(random(100)),int(random(150))+156);
+      this.clr = color(int(random(100)),int(random(100)),int(random(200))+56);
     }
     else {
-      this.clr = color(int(random(150))+156,int(random(100)),int(random(100)));
+      this.clr = color(int(random(200))+56,int(random(100)),int(random(100)));
     }
   }
 }
