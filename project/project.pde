@@ -3,6 +3,8 @@ import ddf.minim.*;
 Minim minim;
 AudioPlayer c1, h1, h2, t1, t2, r1, r2, sf1, sf2, f1, f2, re1, re2, re3, m1;
 PImage img;
+int last_second;
+int array_counter;
 
 void setup() {
   size(800, 800);
