@@ -1,7 +1,7 @@
 StoryStream [] streams;
 import ddf.minim.*;
 Minim minim;
-AudioPlayer c1, h1, h2, t1, t2, r1, r2, sf1, sf2, f1, f2, re1, re2, re3, m1, p1, l1, l2;
+AudioPlayer c1, h1, h2, t1, t2, r1, r2, sf1, sf2, f1, f2, re1, re2, re3, m1, p1, l1, l2, audio;
 PImage img;
 int last_second;
 int array_counter;
@@ -35,6 +35,10 @@ void setup() {
   p1 = minim.loadFile("p1.wav");
   l1 = minim.loadFile("l1.wav") ;
   l2 = minim.loadFile("l2.wav") ;
+  audio = minim.loadFile("audio.wav");
+  while (true == true){
+    audio.play();
+    audio.rewind();
 }
 
 void mousePressed()
